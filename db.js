@@ -1,11 +1,14 @@
 const fs = require('fs')
+const joinPath = require('path').join
+
+const path = joinPath(__dirname, './db-habits.json')
 
 function db() {
-  const fileExists = fs.existsSync('./db-habits.json')
-  const habits = fileExists ? require('./db-habits.json') : []
+  const fileExists = fs.existsSync(path)
+  const habits = fileExists ? require(path) : []
 
   if (!fileExists) {
-    fs.writeFileSync('./db-habits.json', JSON.stringify(habits))
+    fs.writeFileSync(path, JSON.stringify(habits))
   }
 
   function addHabit(habit) {
@@ -13,7 +16,7 @@ function db() {
   }
 
   function save() {
-    fs.writeFileSync('./db-habits.json', JSON.stringify(habits, null, 2))
+    fs.writeFileSync(path, JSON.stringify(habits, null, 2))
   }
 
   function addRepetition(name, number) {
