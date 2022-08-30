@@ -58,6 +58,8 @@ function app() {
     )} ----\n\n${preview.join('\n')}\n\n= `
   )
 
+  if (indexHabit === '') return
+
   console.clear()
   const selectedHabit = db.habits[indexHabit - 1]
 
